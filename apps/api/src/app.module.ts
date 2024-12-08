@@ -1,14 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoriesModule } from './categories/categories.module';
+import { CommonModule } from './common/common.module';
+import { SeedsModule } from './seeds/seeds.module';
+import { ProductsModule } from './products/products.module';
+import { RulesModule } from './rules/rules.module';
 
 @Module({
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'app/dist'),
@@ -24,6 +27,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: process.env.NODE_ENV !== 'production',
     }),
+    CategoriesModule,
+    CommonModule,
+    SeedsModule,
+    ProductsModule,
+    RulesModule,
   ],
 })
 export class AppModule {}
