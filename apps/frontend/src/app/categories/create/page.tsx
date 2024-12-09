@@ -1,7 +1,7 @@
 import FormCategories from "@/components/forms/form-categories"
 
 
-function CreateCategory() {
+export default function CategoriesCreate() {
   return (
     <section className='w-full p-5'>
       <h2 className="mb-10">Create Category</h2>
@@ -10,5 +10,3 @@ function CreateCategory() {
 
   )
 }
-
-export default CreateCategory

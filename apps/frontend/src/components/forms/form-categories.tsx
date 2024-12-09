@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form"
 
 import { useRouter } from "next/navigation"
-import { createCategory } from "@/actions/actions-category"
+import { createCategory } from "@/actions/actions-categories"
 
 const formSchema = z.object({
   name: z.string().min(2, {

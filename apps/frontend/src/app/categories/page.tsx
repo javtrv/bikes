@@ -1,6 +1,5 @@
 
 import Search from "@/components/search/search";
-import SearchCategories from "@/components/search/search-categories";
 import TableCategories from "@/components/tables/table-categories";
 import { Suspense } from "react";
 

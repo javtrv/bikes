@@ -1,5 +1,5 @@
 
-import { fetchCategories } from "@/actions/actions-category"
+import { fetchCategories } from "@/actions/actions-categories"
 import {
   Table,
   TableBody,
