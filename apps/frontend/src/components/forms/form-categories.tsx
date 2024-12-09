@@ -14,8 +14,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { createCategory } from "@/actions/actions-categories"
+
 import { useRouter } from "next/navigation"
+import { createCategory } from "@/actions/actions-category"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -26,12 +27,12 @@ const formSchema = z.object({
   })),
 })
 
-function CategoriesForm() {
+export default function FormCategories() {
   const { toast } = useToast()
   const router = useRouter();
 
 
-  const productForm = useForm<z.infer<typeof formSchema>>({
+  const categoryForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -62,12 +63,12 @@ function CategoriesForm() {
 
   return (
     <div className='w-8/12 m-auto'>
-      <Form {...productForm}>
-        <form onSubmit={productForm.handleSubmit(onSubmit)} className="space-y-8">
+      <Form {...categoryForm}>
+        <form onSubmit={categoryForm.handleSubmit(onSubmit)} className="space-y-8">
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <FormField
-                control={productForm.control}
+                control={categoryForm.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
@@ -82,7 +83,7 @@ function CategoriesForm() {
             </div>
             <div className="flex flex-col space-y-1.5">
               <FormField
-                control={productForm.control}
+                control={categoryForm.control}
                 name="order"
                 render={({ field }) => (
                   <FormItem>
@@ -112,5 +113,3 @@ function CategoriesForm() {
     </div>
   )
 }
-
-export default CategoriesForm

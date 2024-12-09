@@ -1,5 +1,7 @@
+
+import { fetchCategories } from "@/actions/actions-category"
 import {
-  Table as BaseTable,
+  Table,
   TableBody,
   TableCell,
   TableFooter,
@@ -7,17 +9,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Category } from "@/lib/types"
- 
-type CategoryTableProps = {
-  categories: Category[];
-}
 
  
-export function CategoriesTable(
-  { categories = [] }: CategoryTableProps) {
+export default async function TableCategories({query} : {query: string}) {
+
+  const categories = await fetchCategories(query)
+
+
+
   return (
-    <BaseTable>
+    <Table>
       <TableHeader>
         <TableRow>
           <TableHead >Name</TableHead>
@@ -40,6 +41,6 @@ export function CategoriesTable(
           <TableCell className="text-left  font-bold">{categories.length || 0}</TableCell>
         </TableRow>
       </TableFooter>
-    </BaseTable>
+    </Table>
   )
 }

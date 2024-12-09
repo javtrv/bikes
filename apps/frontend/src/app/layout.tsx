@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import { SidebarProvider } from "@/components/ui/sidebar"
-import AppSidebar from "@/components/app-sidebar";
 import "./globals.css";
+import AppSidebar from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/toaster";
 
 // TODO: Quitar estas fuentes de aqui
@@ -16,7 +16,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
 
 export default function RootLayout({
   children,

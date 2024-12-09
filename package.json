@@ -7,7 +7,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "api": "turbo dev --filter=api",
-    "app": "turbo dev --filter=app",
+    "app": "turbo dev --filter=frontend",
     "start": "node apps/api/dist/main.js"
   },
   "keywords": [],
