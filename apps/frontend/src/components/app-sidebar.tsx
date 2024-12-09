@@ -26,12 +26,12 @@ const items = [
   },
   {
     title: "Products",
-    url: "#",
+    url: "/products",
     icon: SquareChartGantt,
   },
   {
     title: "Rules",
-    url: "#",
+    url: "/rules",
     icon: TrafficCone,
   },
 ]

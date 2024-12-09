@@ -7,7 +7,15 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation"
 import Link from "next/link"
 import { useDebouncedCallback } from "use-debounce"
 
-export default function SearchCategories() {
+export default function Search({
+  placeholder,
+  textButtom,
+  href
+}:{
+  placeholder: string
+  textButtom: string
+  href: string
+}) {
 
   const searchParams = useSearchParams()
   const pathname = usePathname()
@@ -28,11 +36,11 @@ export default function SearchCategories() {
 
   return (
     <section className='flex justify-center p-5'>
-      <Input type="text" placeholder="Search categories" className="mr-4" 
+      <Input type="text" placeholder={placeholder} className="mr-4" 
         onChange={(e) => handleSearch(e.target.value)} 
         defaultValue={searchParams.get('query')?.toString() || ''}
       />
-      <Link href='/categories/create'><Button>+ Create Category</Button></Link>
+      <Link href={href}><Button>{textButtom}</Button></Link>
     </section>
   )
 }
