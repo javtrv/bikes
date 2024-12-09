@@ -10,6 +10,9 @@ export class Product {
   @Column('text')
   name: string;
 
+  @Column('float', { default: 0 })
+  price: number;
+
   @ManyToOne(
     () => Category,
     (category) => category.products,

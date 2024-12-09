@@ -47,6 +47,8 @@ export class ProductsService {
       }
     });
 
+    console.log(products);
+
     return products.map(product => ({
       ...product,
       category: { id: product.category.id, name: product.category.name }

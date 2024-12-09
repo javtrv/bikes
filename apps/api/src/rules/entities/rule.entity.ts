@@ -19,6 +19,9 @@ export class Rule {
   @ManyToOne(
     () => Product,
     (product) => product.rules,
+    {
+      onDelete: 'CASCADE',
+    }
   )
   @JoinColumn({ name: 'product_id' })
   product: Product;
