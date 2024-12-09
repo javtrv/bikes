@@ -12,12 +12,14 @@ export type Category = {
 export type Product = {
   id: string;
   name: string;
+  price: string;
   category: Partial<Category>;
   rules?: Rule[];
 }
 
 export type ProductDto = {
   name: string;
+  price: number;
   category: string;
 }
 

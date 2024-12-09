@@ -14,6 +14,8 @@ export async function fetchProducts(query : string) : Promise<Product[]> {
   const response = await fetch(`${apiUrl}/products`);
   let data: Product[] = await response.json();
 
+  console.log('DATA:', data)
+
 
   if (query) {
     data = data.filter((product: Product) => {

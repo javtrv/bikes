@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast"
 
 
 export default function DeleteButton({element, id} : {element: string, id: string}) {
+
   const { toast } = useToast()
 
   const onDelete = async (id: string) => {
@@ -31,6 +32,12 @@ export default function DeleteButton({element, id} : {element: string, id: strin
       onClick={() => {
         // Validacion basica para confirmar si se desea eliminar un elemento
         // TODO: Estilizar el modal de confirmacion
+        const message = 
+        `Are you sure you want to delete? 
+        ${element === ELEMENTS.PRODUCT ? 
+          'This will delete all the rules associated with this product' : 
+          ''
+        }` 
         if (confirm(`Are you sure you want to delete?`)) {
           console.log(`Deleting ${element} ${id}`)
           if(element === ELEMENTS.PRODUCT) {

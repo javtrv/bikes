@@ -30,6 +30,9 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
+  price: z.preprocess((val) => Number(val), z.number().min(0, {
+    message: "Price is required.",
+  })),
   category: z.string().min(1, {
     message: "Category is required.",
   }),
@@ -48,6 +51,7 @@ export default function FormProducts({categories}: FormProductsProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      price: 0,
       category: "",
     },
   })
@@ -97,6 +101,21 @@ export default function FormProducts({categories}: FormProductsProps) {
                   )}
                 />
               </div>
+              <div className="flex flex-col space-y-1.5">
+              <FormField
+                control={productForm.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Price</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Price of your product" type='number' {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
               <div className="flex flex-col space-y-1.5">
                 <FormField
                   control={productForm.control}
