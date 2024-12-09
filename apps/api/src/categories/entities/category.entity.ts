@@ -10,7 +10,6 @@ export class Category {
   name: string;
 
   @Column('int', { default: 0 })
-  // how i set a default value?
   order?: number;
 
   @OneToMany(
