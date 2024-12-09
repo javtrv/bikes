@@ -34,7 +34,7 @@ export class SeedsService {
     const insertPromises = [];
 
     initialCategories.forEach(async category => {
-      insertPromises.push(this.categoryService.create(category));
+      insertPromises.push(this.categoryService.create(category, true));
     })
 
     await Promise.all(insertPromises);

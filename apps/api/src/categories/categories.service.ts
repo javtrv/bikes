@@ -16,15 +16,31 @@ export class CategoriesService {
     private categoryRepository: Repository<Category>,
   ){}
 
+  // This can be improved in the future to update the order of all categories
+  // when a is inserted in the middle of the list
+  async updateOrder(category: Category) {
+    // We update the order of the category to the last position
+    const allCategories = await this.categoryRepository.find();
+    await this.update(category.id, { order: allCategories.length });
+  }
   
-  
-  async create(createCategoryDto: CreateCategoryDto) {
+  async create(createCategoryDto: CreateCategoryDto, seed: boolean = false) {
     try {
+      const oldCategory = await this.categoryRepository.findOne({ where: { order: createCategoryDto.order } });
+      
       const { products, ...categoryDetails } = createCategoryDto;
       const newCategory = this.categoryRepository.create(categoryDetails);
       newCategory.products = [];
       const category = await this.categoryRepository.save(newCategory);
+      
+      // Check if category with order already exists and update
+      // Only for real data and not seed data
+      if(!seed && oldCategory){
+          await this.updateOrder(oldCategory);
+      }
+
       return category;
+    
     } catch (error) {
       handleDBError(error, 'Category');
     }
@@ -35,6 +51,7 @@ export class CategoriesService {
     return this.categoryRepository.find({
       take: limit,
       skip: offset,
+      order: { order: 'ASC' },
     });
   }
 
@@ -56,8 +73,20 @@ export class CategoriesService {
     return category;
   }
 
-  update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    return `NOT IMPLEMENTED - This action updates a #${id} category`;
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    const category = await this.categoryRepository.preload(
+      {
+        id: id,
+        ...updateCategoryDto,
+        products: updateCategoryDto.products ? updateCategoryDto.products.map(productId => ({ id: productId })) : undefined,
+      }
+    )
+
+    if (!category) {
+      throw new NotFoundException(`Category with id: ${id} not found`);
+    }
+
+    return this.categoryRepository.save(category);
   }
 
   remove(id: string) {

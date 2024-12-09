@@ -1,4 +1,4 @@
-import { IsArray, IsOptional, IsString, IsUUID } from "class-validator";
+import { IsArray, IsOptional, IsPositive, IsString, IsUUID, Min } from "class-validator";
 
 export class CreateCategoryDto {
 
@@ -11,6 +11,11 @@ export class CreateCategoryDto {
 
   @IsString()
   name: string;
+
+  @IsOptional()
+  @IsPositive()
+  @Min(1)
+  order?: number;
 
   @IsOptional()
   @IsArray({ each: true })

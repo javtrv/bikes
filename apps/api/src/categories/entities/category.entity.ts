@@ -9,6 +9,10 @@ export class Category {
   @Column('text', { unique: true })
   name: string;
 
+  @Column('int', { default: 0 })
+  // how i set a default value?
+  order?: number;
+
   @OneToMany(
     () => Product,
     (product) => product.category,
