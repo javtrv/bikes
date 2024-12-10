@@ -16,7 +16,7 @@ import { ELEMENTS } from "@/lib/types"
 export default async function TableProducts({query} : {query: string}) {
 
   const products = await fetchProducts(query)
-  console.log('products', products)
+
 
   return (
     <Table>

@@ -4,7 +4,7 @@ import TableProducts from "@/components/tables/table-products";
 
 import { Suspense } from "react";
 
-export default function TablePage({searchParams}:{
+export default function ProductPage({searchParams}:{
   searchParams: {
     query: string
   }

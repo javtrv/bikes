@@ -4,6 +4,7 @@ import { ELEMENTS } from "@/lib/types"
 import { Button } from "../ui/button"
 import { deleteProduct } from "@/actions/actions-products"
 import { useToast } from "@/hooks/use-toast"
+import { deleteRule } from "@/actions/actions-rules"
 
 
 
@@ -12,10 +13,15 @@ export default function DeleteButton({element, id} : {element: string, id: strin
   const { toast } = useToast()
 
   const onDelete = async (id: string) => {
-    const deleteRequest = await deleteProduct(id);
+    let deleteRequest;
+    if(element === ELEMENTS.PRODUCT){
+       deleteRequest = await deleteProduct(id);
+    } else {
+       deleteRequest = await deleteRule(id);
+    }
     if(!deleteRequest?.error) {
       toast({
-        title: `Product deleted!`,
+        title: `Element deleted!`,
         color:"green"
       })
     }else{
@@ -24,7 +30,6 @@ export default function DeleteButton({element, id} : {element: string, id: strin
         color:"red"
       })
     }
-    console.log('deleteRequest', deleteRequest)
   }
 
   return (
@@ -33,19 +38,13 @@ export default function DeleteButton({element, id} : {element: string, id: strin
         // Validacion basica para confirmar si se desea eliminar un elemento
         // TODO: Estilizar el modal de confirmacion
         const message = 
-        `Are you sure you want to delete? 
+        `Are you sure you want to delete this ${element}? 
         ${element === ELEMENTS.PRODUCT ? 
           'This will delete all the rules associated with this product' : 
           ''
         }` 
-        if (confirm(`Are you sure you want to delete?`)) {
-          console.log(`Deleting ${element} ${id}`)
-          if(element === ELEMENTS.PRODUCT) {
-            console.log('Deleting product')
+        if (confirm(message)) {
             onDelete(id)
-          } else if(element === ELEMENTS.RULE) {
-            console.log('Deleting rule')
-          }
         }
       }
       }

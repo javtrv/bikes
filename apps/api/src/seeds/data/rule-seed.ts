@@ -19,6 +19,15 @@ export const initialRules: SeedRule[] = [
     }
   },
   {
+    "id":"6d6bde4c-460d-421d-a63d-709c3a09484c",
+    "type":"discount",
+    "amount":10,
+    "productList":["f8c98bda-c79b-4b49-a959-d55036b4b06e, 25615538-06e2-463b-a265-7db121c4b3df"],
+    "product":  {
+      "id":"f458a10b-c8fc-4f9e-9b78-4485949c24ef"
+    }
+  },
+  {
     "id":"0802b72b-208f-43ba-98e9-ed6a0de81848",
     "type":"increase",
     "amount":20,

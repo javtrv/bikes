@@ -64,7 +64,6 @@ export default function FormProducts({categories}: FormProductsProps) {
     })
     console.log('VALUES:', values)
     const createRequest = await createProduct(values);
-    console.log('createRequest', createRequest)
     if(!createRequest?.error) {
       toast({
         title: `Product created!`,

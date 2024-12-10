@@ -26,7 +26,16 @@ export type ProductDto = {
 export type Rule =  {
   id: string;
   type: string;
-  amout: string;
+  amount: string;
+  productList: string[];
+}
+
+export type RuleDto = {
+  product: {
+    id: string;
+  }
+  type: string;
+  amount: number;
   productList: string[];
 }
 

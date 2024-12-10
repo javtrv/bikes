@@ -37,7 +37,9 @@ export class RulesController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rulesService.remove(+id);
+  remove(
+    @Param('id', ParseUUIDPipe) id: string
+  ) {
+    return this.rulesService.remove(id);
   }
 }

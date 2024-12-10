@@ -12,6 +12,8 @@ export default function Search({
   textButtom,
   href
 }:{
+  // Esto se puede refactorizar para no utilizar props
+  // sino usar el strategy pattern y buscar por un key
   placeholder: string
   textButtom: string
   href: string

@@ -46,7 +46,6 @@ export default function FormCategories() {
       duration: 3000,
     })
     const createRequest = await createCategory(values);
-    console.log('createRequest', createRequest)
     if(!createRequest?.error) {
       toast({
         title: `Category created!`,

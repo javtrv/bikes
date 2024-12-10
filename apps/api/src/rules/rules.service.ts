@@ -63,11 +63,7 @@ export class RulesService {
       throw new Error(`Rule with id ${id} not found`);
     }
 
-    const { product, ...ruleDetails } = rule;
-    return {
-      product: {id: product.id, name: product.name},
-      ...ruleDetails
-    }
+    return rule;
 
   }
 
@@ -80,8 +76,9 @@ export class RulesService {
     return `This action updates a #${id} rule`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} rule`;
+  async remove(id: string) {
+    const rule = await this.findOne(id)
+    return this.ruleRepository.remove(rule);
   }
 
   async deleteAllRules() {

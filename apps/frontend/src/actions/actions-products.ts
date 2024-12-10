@@ -14,9 +14,6 @@ export async function fetchProducts(query : string) : Promise<Product[]> {
   const response = await fetch(`${apiUrl}/products`);
   let data: Product[] = await response.json();
 
-  console.log('DATA:', data)
-
-
   if (query) {
     data = data.filter((product: Product) => {
       const name = product.name.toLowerCase();
@@ -25,6 +22,12 @@ export async function fetchProducts(query : string) : Promise<Product[]> {
   }
 
   revalidatePath('/products')
+  return data;
+}
+
+export async function fetchProduct(id: string) : Promise<Product | undefined> {
+  const response = await fetch(`${apiUrl}/products/${id}`);
+  const data: Product = await response.json();
   return data;
 }
 
