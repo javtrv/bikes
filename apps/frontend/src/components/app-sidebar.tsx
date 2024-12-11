@@ -33,11 +33,6 @@ const items = [
     title: "Rules",
     url: "/rules",
     icon: TrafficCone,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Database,
   }
 ]
 

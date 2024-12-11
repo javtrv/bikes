@@ -7,11 +7,19 @@ This web application allows the user to configure custom-made bikes, selecting c
 ## Instalation:
 
 - Clone the repository.
+- Asure you have node 22.12 or higher installed.
+- Create a .env file in the frontend folder with the following content:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
+```
+
 - Install dependencies.
 
 ```bash
 npm install
 ```
+
 
 - Run the dev server.
 
