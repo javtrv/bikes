@@ -197,7 +197,7 @@ export default function BikeForm() {
         </section>
         { !(bikeContext.actualStep === bikeContext.stepList.length) ? (
           <>
-            <p className='font-bold text-lg'>{`Category #${bikeContext.actualStep + 1}`}: <b>{categoryName}</b></p>
+            <p className='font-bold text-lg'>{`Step #${bikeContext.actualStep + 1}`}</p>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="w-100 space-y-6 mt-5">
                 <div className="grid w/full items-center gap-4">
@@ -207,7 +207,7 @@ export default function BikeForm() {
                       name="product"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Product</FormLabel>
+                          <FormLabel>{categoryName}</FormLabel>
                           <Select 
                             onValueChange={(value) => {
                               const prevValue = field.value

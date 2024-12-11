@@ -30,8 +30,8 @@ npm run dev
 - You can run the apps individually.
 
 ```bash
-npm run api // Para iniciar el servidor de backend
-npm run dev:backend // Para iniciar el servidor de frontend
+npm run api // to start the backend server
+npm run app // to start the frontend server
 ```
 
 ## Data base:
@@ -64,17 +64,20 @@ http://localhost:4000/api/seeds
 - User-Friendly Interface:
   The system provides a user-friendly interface with a sidebar to navigate between the different categories. For each main componet (categories, products and rules) there is a page that allows the user to search, create and in some cases delete components.
 
+  Also the step-by-step form guides the user through the selection process making the process more intuitive and not overwhelming.
+
 ## Solution details
 
 For this MVP, the solution is primarily based on the Category component. A crucial decision was made to introduce an Order field for each category. This decision was motivated by three key factors:
 
-1. To build the product selection form dynamically according to the order of the categories.
+1. To build the product selection form dynamically according to the order of the categories. This approach is user-friendly, as it guides the user through the selection process, ensuring a logical sequence of product selection.
 
-2. To simplify the queries on the product rules.
+2. Simplify the queries on the product rules. By ordering the categories, the system can easily determine what rules are applicable to the selected products.
 
 3. Development time.
 
-While this initial implementation focuses on a sequential product selection, the future vision is to allow users to freely select products without a strict order.
+
+While this initial implementation focuses on a sequential product selection, the future vision is to allow users to freely select products without a strict order and allow more flexibility in the product selection process.
 
 Additionally, 4 types of rules were implemented:
 
@@ -89,10 +92,17 @@ The rule creation form allows for flexible rule definitions, enabling the combin
 
 Some ideas were left out of this MVP to focus on the core features. Here are some of the next steps to improve the system:
 
-- User Interface: Improve the user interface with a more modern design.
+- Add a 'Previous' button to the form to allow users to go back and edit their selections. - Top priority
+- Add a 'Edit' button to the product list in the summary to allow users to remove or change products. - Top priority
+
+- Show the discount or increase amount by product in the final price.
 - Eliminate the dependency of the 'Order' field in the categories.
 - Rules system: Allows to create new types of rules.
 - Testing: Implement unit and integration tests.
 - Validations: Improve the validation system.
 - Bugs: Revision of the system to fix bugs and improve performance.
 - Refactor some components to allow reuse.
+
+
+
+

@@ -221,7 +221,7 @@ export default function FormRules({products}: FormRulesProps) {
                 type="submit"
                 className='mt-2'
               >
-                Create
+                Create rule
               </Button>
             </div>
           </form>

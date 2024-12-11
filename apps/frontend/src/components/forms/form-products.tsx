@@ -145,7 +145,7 @@ export default function FormProducts({categories}: FormProductsProps) {
                 type="submit"
                 className='mt-2'
               >
-                Create
+                Create product
               </Button>
             </div>
           </form>

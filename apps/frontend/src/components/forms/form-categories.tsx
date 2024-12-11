@@ -103,7 +103,7 @@ export default function FormCategories() {
               type="submit"
               className='mt-2'
             >
-              Create
+              Create categories
             </Button>
           </div>
         </form>
