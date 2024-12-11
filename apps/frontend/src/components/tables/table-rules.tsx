@@ -15,7 +15,7 @@ import { fetchProduct, fetchProducts } from "@/actions/actions-products"
 
 
 function getProductsNames(products : Product[], productsIds: string[]) : string {
-  // quiero devolver un array de strings con los nombres de los productos
+
   const productsNames = products.filter(product => productsIds.includes(product.id)).map(product => product.name)
   return productsNames.toString()
 }

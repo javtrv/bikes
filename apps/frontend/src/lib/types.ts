@@ -9,6 +9,11 @@ export type Category = {
   order: number; 
 }
 
+export type CategoryDto = {
+  name: string;
+  order: number;
+}
+
 export type Product = {
   id: string;
   name: string;

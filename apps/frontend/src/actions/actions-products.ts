@@ -1,28 +1,35 @@
 "use server"
 
-import { Product, ProductDto } from "@/lib/types";
-import { revalidatePath } from "next/cache";
+import { Product, ProductDto } from "@/lib/types"
+import { revalidatePath } from "next/cache"
 
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
 
 //TODO: Pudieramos refectorizar los fetch para hacerlos mas generales
 // y que reciba el endpoint como parametro y el tipo de dato que se espera
 export async function fetchProducts(query : string) : Promise<Product[]> {
 
 
-  const response = await fetch(`${apiUrl}/products`);
-  let data: Product[] = await response.json();
+  const response = await fetch(`${apiUrl}/products`)
+  let data: Product[] = await response.json()
 
   if (query) {
     data = data.filter((product: Product) => {
-      const name = product.name.toLowerCase();
-      return name.includes(query.toLowerCase());
+      const name = product.name.toLowerCase()
+      return name.includes(query.toLowerCase())
     });
   }
 
+  const sortedProducts = data.sort((a, b) => {
+    if ((a.category?.order ?? 0) < (b.category?.order ?? 0)) return -1
+    if ((a.category?.order ?? 0) > (b.category?.order ?? 0)) return 1
+    return 0
+  })
+
   revalidatePath('/products')
-  return data;
+  return sortedProducts
 }
 
 export async function fetchProduct(id: string) : Promise<Product | undefined> {

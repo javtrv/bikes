@@ -29,7 +29,7 @@ const formSchema = z.object({
 
 export default function FormCategories() {
   const { toast } = useToast()
-  const router = useRouter();
+  const router = useRouter()
 
 
   const categoryForm = useForm<z.infer<typeof formSchema>>({
@@ -45,7 +45,7 @@ export default function FormCategories() {
       title: `Creating category...`,
       duration: 3000,
     })
-    const createRequest = await createCategory(values);
+    const createRequest = await createCategory(values)
     if(!createRequest?.error) {
       toast({
         title: `Category created!`,
@@ -73,7 +73,7 @@ export default function FormCategories() {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Name of your product" {...field} />
+                      <Input placeholder="Name of your category" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

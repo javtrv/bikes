@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,8 +24,8 @@ import {
 } from "@/components/ui/select"
 
 import { useRouter } from "next/navigation"
-import { Category, Product } from "@/lib/types"
-import { createProduct } from "@/actions/actions-products"
+import { Product } from "@/lib/types"
+
 import createRule from "@/actions/actions-rules"
 
 
@@ -50,7 +51,7 @@ interface FormRulesProps {
 export default function FormRules({products}: FormRulesProps) { 
 
   const { toast } = useToast()
-  const router = useRouter();
+  const router = useRouter()
 
 
   const ruleForm = useForm<z.infer<typeof formSchema>>({
@@ -78,7 +79,6 @@ export default function FormRules({products}: FormRulesProps) {
       duration: 3000,
     })
 
-    console.log('formatedValues:', formatedValues)
     const createRequest = await createRule(formatedValues);
     if(!createRequest?.error) {
       toast({
@@ -111,7 +111,7 @@ export default function FormRules({products}: FormRulesProps) {
                         <_Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a category" />
+                              <SelectValue placeholder="Select a product" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -137,7 +137,7 @@ export default function FormRules({products}: FormRulesProps) {
                         <_Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a category" />
+                              <SelectValue placeholder="Select a type" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -189,11 +189,15 @@ export default function FormRules({products}: FormRulesProps) {
                     control={ruleForm.control}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>ProductList</FormLabel>
+                        <FormLabel>Product List</FormLabel>
                         <Select
                           options={(() => {
-                            const productListWithoutPrincipal = products.filter(product => product.id !== ruleForm.watch('product'))
-                            const valuesArray =  productListWithoutPrincipal.map((product) => ({
+                            const principalProduct = products.find(product => product.id === ruleForm.watch('product'))
+                            const productListWithoutPrincipal = products.filter(product => 
+                              product.id !== ruleForm.watch('product') && 
+                              (product?.category?.order ?? 0) > (principalProduct?.category?.order ?? 0)
+                            )
+                            const valuesArray = productListWithoutPrincipal.map((product) => ({
                               value: product.id,
                               label: product.name + ' - ' + product.category.name,
                             }))
@@ -206,6 +210,9 @@ export default function FormRules({products}: FormRulesProps) {
                             field.onChange(selectedOption.map((option) => option.value))
                           }}
                         />
+                        <FormDescription>
+                          You can only select products with a higher category order than the principal product
+                        </FormDescription>
                       </FormItem>
                     )}
                   />

@@ -1,10 +1,10 @@
 import localFont from "next/font/local";
 import { SidebarProvider } from "@/components/ui/sidebar"
-import "./globals.css";
-import AppSidebar from "@/components/app-sidebar";
-import { Toaster } from "@/components/ui/toaster";
+import "./globals.css"
+import AppSidebar from "@/components/app-sidebar"
+import { Toaster } from "@/components/ui/toaster"
 
-// TODO: Quitar estas fuentes de aqui
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +30,7 @@ export default function RootLayout({
         <SidebarProvider>
         <AppSidebar />
         <main className="w-full p-4 flex">
-          {children}
+            {children}
         </main>
         <Toaster />
         </SidebarProvider>

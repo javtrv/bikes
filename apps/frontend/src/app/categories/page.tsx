@@ -1,7 +1,8 @@
 
-import Search from "@/components/search/search";
-import TableCategories from "@/components/tables/table-categories";
-import { Suspense } from "react";
+import Search from "@/components/search/search"
+import TableCategories from "@/components/tables/table-categories"
+import { Group } from "lucide-react"
+import { Suspense } from "react"
 
 export default function TablePage({searchParams}:{
   searchParams: {
@@ -13,7 +14,11 @@ export default function TablePage({searchParams}:{
 
   return (
     <section className='w-full'>
-      <h2>Categories</h2>
+      {/* Improve: Este titulo puede ser un componente unico, que reciba el icono y el texto */}
+      <div className='flex flex-row p-5 mb-5'>
+        <Group size={40} />
+        <h2 className='text-4xl font-bold text-left ml-1'>Categories</h2>
+      </div>
 
       <Search
         placeholder="Search categories"

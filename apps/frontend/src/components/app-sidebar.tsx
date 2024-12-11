@@ -1,4 +1,4 @@
-import { TrafficCone, Home, SquareChartGantt, Group,  } from "lucide-react"
+import { TrafficCone, Home, SquareChartGantt, Group, Database,  } from "lucide-react"
 
 import {
   Sidebar,
@@ -34,6 +34,11 @@ const items = [
     url: "/rules",
     icon: TrafficCone,
   },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: Database,
+  }
 ]
 
 export default function AppSidebar() {

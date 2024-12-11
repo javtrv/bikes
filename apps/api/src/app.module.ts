@@ -19,13 +19,20 @@ import { RulesModule } from './rules/rules.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      autoLoadEntities: true,
-      synchronize: process.env.NODE_ENV !== 'production',
+      // url: process.env.DB_URL,
+      // Ponemos la url de la base de datos en render
+      // solo para efectos de demostracion y facilitar el uso
+      // pero debe venis de una variable de entorno para seguridad
+      url:'postgresql://bikesdb_user:XlWWJLrbFr1QMJDKGU4pavqguGTxOlBP@dpg-ctcmbddds78s739gnhhg-a.frankfurt-postgres.render.com/bikesdb?ssl=true',
+      entities: [__dirname + '/../**/*.entity.js'],
+    // Con esta configuracion nos conectamos a la base de datos en local para desarrollar
+    // host: process.env.DB_HOST,
+    // port: +process.env.DB_PORT,
+    // database: process.env.DB_NAME,
+    // username: process.env.DB_USER,
+    // password: process.env.DB_PASSWORD,
+    // autoLoadEntities: true,
+    // synchronize: process.env.NODE_ENV !== 'production',
     }),
     CategoriesModule,
     CommonModule,

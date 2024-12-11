@@ -44,7 +44,7 @@ interface FormProductsProps {
 
 export default function FormProducts({categories}: FormProductsProps) {
   const { toast } = useToast()
-  const router = useRouter();
+  const router = useRouter()
 
 
   const productForm = useForm<z.infer<typeof formSchema>>({
@@ -62,7 +62,7 @@ export default function FormProducts({categories}: FormProductsProps) {
       title: `Creating product...`,
       duration: 3000,
     })
-    console.log('VALUES:', values)
+
     const createRequest = await createProduct(values);
     if(!createRequest?.error) {
       toast({
@@ -80,7 +80,7 @@ export default function FormProducts({categories}: FormProductsProps) {
 
   return (
     <>
-    {categories.length >= 0 && (
+    {categories.length > 0 && (
         <div className='w-8/12 m-auto'>
         <Form {...productForm}>
           <form onSubmit={productForm.handleSubmit(onSubmit)} className="space-y-8">

@@ -1,29 +1,29 @@
 "use server"
 
-import { Category } from "@/lib/types";
-import { revalidatePath } from "next/cache";
+import { Category, CategoryDto } from "@/lib/types"
+import { revalidatePath } from "next/cache"
 
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 export async function fetchCategories(query : string) : Promise<Category[]> {
 
 
-  const response = await fetch(`${apiUrl}/categories`);
-  let data: Category[] = await response.json();
+  const response = await fetch(`${apiUrl}/categories`)
+  let data: Category[] = await response.json()
 
   if (query) {
     data = data.filter((category: Category) => {
-      const name = category.name.toLowerCase();
-      return name.includes(query.toLowerCase());
-    });
+      const name = category.name.toLowerCase()
+      return name.includes(query.toLowerCase())
+    })
   }
 
+  revalidatePath('/categories')
   return data;
 }
 
-// TODO: Pudieramos crear un CategoryDto
-export async function createCategory(category: Partial<Category>) : Promise<{error?: string} | undefined> {
+export async function createCategory(category: CategoryDto) : Promise<{error?: string} | undefined> {
   try{
     const response = await fetch(`${apiUrl}/categories`, {
       method: 'POST',
@@ -40,6 +40,4 @@ export async function createCategory(category: Partial<Category>) : Promise<{err
   }catch(error){
     return {error: String(error)}
   }
-  
-
 }

@@ -1,8 +1,7 @@
-
-import Search from "@/components/search/search";
-import TableProducts from "@/components/tables/table-products";
-
-import { Suspense } from "react";
+import Search from "@/components/search/search"
+import TableProducts from "@/components/tables/table-products"
+import { SquareChartGantt } from "lucide-react"
+import { Suspense } from "react"
 
 export default function ProductPage({searchParams}:{
   searchParams: {
@@ -14,7 +13,10 @@ export default function ProductPage({searchParams}:{
 
   return (
     <section className='w-full'>
-      <h2>Products</h2>
+      <div className='flex flex-row p-5 mb-5'>
+        <SquareChartGantt size={40} />
+        <h2 className='text-4xl font-bold text-left ml-1'>Products</h2>
+      </div>
 
       <Search
         placeholder="Search products"

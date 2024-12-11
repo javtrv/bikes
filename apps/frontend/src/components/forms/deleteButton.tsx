@@ -13,11 +13,11 @@ export default function DeleteButton({element, id} : {element: string, id: strin
   const { toast } = useToast()
 
   const onDelete = async (id: string) => {
-    let deleteRequest;
+    let deleteRequest
     if(element === ELEMENTS.PRODUCT){
-       deleteRequest = await deleteProduct(id);
+       deleteRequest = await deleteProduct(id)
     } else {
-       deleteRequest = await deleteRule(id);
+       deleteRequest = await deleteRule(id)
     }
     if(!deleteRequest?.error) {
       toast({

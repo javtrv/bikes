@@ -49,7 +49,7 @@ export class ProductsService {
 
     return products.map(product => ({
       ...product,
-      category: { id: product.category.id, name: product.category.name }
+      category: { id: product.category.id, name: product.category.name, order: product.category.order }
     }));
   }
 

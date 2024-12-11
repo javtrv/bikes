@@ -1,10 +1,8 @@
-
-import { fetchProducts } from "@/actions/actions-products";
-import SearchByProduct from "@/components/search/search-by-product";
-import TableRules from "@/components/tables/table-rules";
-
-
-import { Suspense } from "react";
+import { fetchProducts } from "@/actions/actions-products"
+import SearchByProduct from "@/components/search/search-by-product"
+import TableRules from "@/components/tables/table-rules"
+import { TrafficCone } from "lucide-react"
+import { Suspense } from "react"
 
 export default async function RulePage({searchParams}:{
   searchParams: {
@@ -13,14 +11,18 @@ export default async function RulePage({searchParams}:{
 }) {
 
   const {query} = searchParams
-  const products = await fetchProducts('');
+  const products = await fetchProducts('')
+
 
   return (
     <section className='w-full'>
-      <h2>Rules</h2>
+      <div className='flex flex-row p-5 mb-5'>
+        <TrafficCone size={40} />
+        <h2 className='text-4xl font-bold text-left ml-1'>Rules</h2>
+      </div>
 
       <SearchByProduct
-        placeholder="Search Rule by product name"
+        placeholder="Search rule by product name"
         textButtom="+ Create rule"
         href="/rules/create"
         products={products}
@@ -34,8 +36,6 @@ export default async function RulePage({searchParams}:{
          </Suspense>
        </div>
       )}
-     
-
     </section>
   )
 }
